@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether Digital | إيثير الرقمية</title>
+    <!-- استدعاء خطوط وأيقونات فخمة -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-deep: #0b0914;
+            --bg-card: #151026;
+            --primary-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --glow-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+            --pink-glow: 0 0 25px rgba(236, 72, 153, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* صفحة التحميل الاحترافية (Splash Screen) */
+        #preloader {
+            Position: fixed;
+            Top: 0;
+            Left: 0;
+            Width: 100%;
+            Height: 100vh;
+            Background: var(--bg-deep, #0b0914);
+            Display: flex;
+            Flex-direction: column;
+            Justify-content: center;
+            Align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .preloader-box {
+            Text-align: center;
+            Display: flex;
+            Flex-direction: column;
+            Align-items: center;
+            Gap: 20px;
+            Padding: 20px;
+        }
+
+        .preloader-title {
+            Font-size: 24px;
+            Font-weight: 900;
+            Background: linear-gradient(135deg, var(--primary-purple, #8b5cf6), var(--accent-pink, #ec4899));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            Display: flex;
+            Align-items: center;
+            Gap: 8px;
+        }
+
+        /* المعين المتحرك (Diamond Loader) وفي داخله اختصار AD */
+        .diamond-loader {
+            Width: 70px;
+            Height: 70px;
+            Background: rgba(139, 92, 246, 0.1);
+            Border: 2px solid var(--primary-purple, #8b5cf6);
+            Transform: rotate(45deg);
+            Display: flex;
+            Justify-content: center;
+            Align-items: center;
+            Margin: 15px 0;
+            Animation: spinDiamond 3s linear infinite;
+            Box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+            Border-radius: 12px;
+        }
+
+        .diamond-text {
+            Transform: rotate(-45deg);
+            Font-size: 20px;
+            Font-weight: 900;
+            Color: var(--accent-pink, #ec4899);
+        }
+
+        @keyframes spinDiamond {
+            0% {
+                transform: rotate(45deg);
+            }
+
+            100% {
+                transform: rotate(405deg);
+            }
+        }
+
+        .preloader-subtitle {
+            Font-size: 14px;
+            Color: var(--text-muted, #9ca3af);
+            Letter-spacing: 0.5px;
+            Margin-top: 5px;
+        }
+
+        .loading-progress-bar {
+            Width: 200px;
+            Height: 3px;
+            Background: rgba(255, 255, 255, 0.1);
+            Border-radius: 10px;
+            Overflow: hidden;
+            Margin-top: 10px;
+            Position: relative;
+        }
+
+        .loading-progress-fill {
+            Position: absolute;
+            Top: 0;
+            Right: 0;
+            Height: 100%;
+            Width: 0%;
+            Background: var(--accent-green, #22c55e);
+            Border-radius: 10px;
+            Box-shadow: 0 0 10px var(--accent-green, #22c55e);
+            Animation: fillProgress 2.2s ease forwards;
+        }
+
+        @keyframes fillProgress {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* شريط التنقل العلوي */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(11, 9, 20, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hamburger-btn {
+            font-size: 22px;
+            color: var(--text-main);
+            cursor: pointer;
+            background: var(--bg-card);
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: 0.3s ease;
+        }
+
+        .hamburger-btn:hover {
+            background: var(--primary-purple);
+            box-shadow: var(--glow-shadow);
+        }
+
+        /* القائمة الجانبية المنسدلة */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: var(--bg-card);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.7);
+            z-index: 1100;
+            transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-left: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-close {
+            align-self: flex-end;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .sidebar-close:hover {
+            color: var(--accent-pink);
+        }
+
+        .sidebar-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .sidebar-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .sidebar-links a i {
+            color: var(--primary-purple);
+        }
+
+        .sidebar-links a:hover {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            color: var(--accent-pink);
+            transform: translateX(-5px);
+        }
+
+        /* القسم التعريفي Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 150px 20px 80px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.7s;
+        }
+
+        .btn-main {
+            padding: 14px 30px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
+            color: white;
+            box-shadow: var(--glow-shadow);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--pink-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 2px solid var(--primary-purple);
+        }
+
+        .btn-outline:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: var(--accent-pink);
+            transform: translateY(-3px);
+        }
+
+        /* عدادات الإحصائيات المتحركة Stats Cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            width: 85%;
+            max-width: 1000px;
+            margin: 60px auto;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-pink));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-pink);
+            box-shadow: var(--pink-glow);
+        }
+
+        .stat-number {
+            font-size: 38px;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* قسم عن الشركة / عني */
+        .about-section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-image-box {
+            position: relative;
+            height: 350px;
+            background: var(--bg-card);
+            border-radius: 25px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-glow {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
+            filter: blur(50px);
+            opacity: 0.5;
+            border-radius: 50%;
+        }
+
+        .about-card-badge {
+            position: relative;
+            background: rgba(21, 16, 38, 0.8);
+            border: 1px solid var(--accent-pink);
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+            font-weight: 700;
+            box-shadow: var(--pink-glow);
+        }
+
+        .about-card-badge i {
+            color: var(--accent-pink);
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .feature-item i {
+            color: var(--primary-purple);
+        }
+
+        /* قسم خدماتنا */
+        .services-section {
+            padding: 100px 20px;
+            background: rgba(21, 16, 38, 0.3);
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px 30px;
+            border-radius: 24px;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-pink);
+            box-shadow: var(--pink-glow);
+        }
+
+        .service-icon {
+            width: 65px;
+            height: 65px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--primary-purple);
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            color: var(--accent-pink);
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
+            color: white;
+            box-shadow: var(--glow-shadow);
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* قسم أعمالنا */
+        .works-section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .work-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-pink);
+            box-shadow: var(--pink-glow);
+        }
+
+        .work-img-box {
+            height: 180px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            color: var(--primary-purple);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .work-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .work-content h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .work-content p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .work-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-pink);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .work-link:hover {
+            color: var(--primary-purple);
+            transform: translateX(-5px);
+        }
+
+        /* تنسيقات نموذج التواصل */
+        .contact-section {
+            padding: 100px 20px;
+            background: rgba(21, 16, 38, 0.4);
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .contact-card-form {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card-form {
+                padding: 25px;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label i {
+            color: var(--primary-purple);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(11, 9, 20, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: var(--text-main);
+            font-family: 'Cairo', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-pink);
+            box-shadow: var(--pink-glow);
+        }
+
+        .form-group select option {
+            background: var(--bg-card);
+            color: var(--text-main);
+        }
+
+        .submit-btn {
+            margin-top: 30px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: var(--glow-shadow);
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--pink-glow);
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .success-message i {
+            color: #22c55e;
+        }
+
+        .success-message h3 {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text-main);
+        }
+
+        .success-message p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* الأزرار العائمة */
+        .floating-sidebar {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--primary-purple);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--glow-shadow);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .float-btn.whatsapp {
+            background: #25d366;
+            border: none;
+            color: white;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* الفوتر */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--bg-deep);
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer span {
+            color: var(--accent-pink);
+            font-weight: 700;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- صفحة التحميل الاحترافية (Splash Screen) -->
+    <div id="preloader">
+        <div class="preloader-box">
+            <div class="preloader-title">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Aether Digital <i class="fa-solid fa-star"
+                    style="font-size: 12px; color: var(--accent-pink);"></i>
+            </div>
+
+            <!-- معين يدور وفيه اختصار AD -->
+            <div class="diamond-loader">
+                <div class="diamond-text">AD</div>
+            </div>
+
+            <div class="preloader-subtitle">نحول الأفكار إلى واقع رقمي مبهر...</div>
+
+            <!-- خط التحميل الأخضر الرفيع -->
+            <div class="loading-progress-bar">
+                <div class="loading-progress-fill"></div>
+            </div>
+        </div>
+    </div>
+    <!-- شريط التنقل العلوي -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Aether Digital
+        </div>
+        <div class="hamburger-btn" id="menuBtn">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </div>
+    </header>
+
+    <!-- القائمة الجانبية المنسدلة -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-close" id="closeBtn">
+            <i class="fa-solid fa-xmark fa-lg"></i>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="#hero"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+            <li><a href="#about"><i class="fa-solid fa-heart"></i> عن الشركة / عني</a></li>
+            <li><a href="#services"><i class="fa-solid fa-laptop-code"></i> خدماتنا</a></li>
+            <li><a href="#works"><i class="fa-solid fa-briefcase"></i> أعمالنا</a></li>
+            <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i> تواصل معنا</a></li>
+            <li><a href="#start"
+                    style="background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink)); color: white;"><i
+                        class="fa-solid fa-rocket"></i> ابدأ مشروعك الآن</a></li>
+        </ul>
+    </div>
+
+    <!-- القسم التعريفي -->
+    <section class="hero" id="hero">
+        <h1>نحول أفكارك إلى <span>واجهات رقمية</span> جذابة وأدوات تفاعلية</h1>
+        <p>نقدم لك تصاميم عصرية، حلول برمجية فخمة، وإبداع بلا حدود ينبض بالدقة والاحترافية العالية.</p>
+        <div class="hero-btns">
+            <a href="#works" class="btn-main btn-primary">شاهد أعمالنا</a>
+            <a href="#contact" class="btn-main btn-outline">تواصل معنا</a>
+        </div>
+    </section>
+
+    <!-- عدادات الإحصائيات المتحركة -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number" data-target="2">0</div>
+            <div class="stat-label">سنوات الخبرة</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" data-target="15">0</div>
+            <div class="stat-label">مشروع ناجح</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" data-target="100">0</div>
+            <div class="stat-label">% رضا العملاء</div>
+        </div>
+    </div>
+
+    <!-- قسم عن الشركة / عني -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-image-box">
+                <div class="about-glow"></div>
+                <div class="about-card-badge">
+                    <i class="fa-solid fa-award"></i>
+                    <span>إبداع بلا حدود</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">عن <span>Aether Digital</span></h2>
+                <p class="about-text">
+                    نحن نؤمن بأن الأفكار البسيطة تتحول بأيدي أمينة ودقيقة إلى واجهات رقمية نابضة بالحياة. قصتنا بدأت
+                    بشغف حقيقي وتطوير مستمر للذات في عالم البرمجة وتصميم الواجهات، لنصنع لك اليوم تجربة مستخدم فريدة
+                    تجمع بين جمال الألوان وقوة الأداء.
+                </p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>شغف وإتقان في كل تفصيلة</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>جودة ومتابعة دقيقة لمشاريع الويب</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>دعم مستمر واحترافية عالية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم خدماتنا -->
+    <section class="services-section" id="services">
+        <div class="section-header">
+            <h2 class="section-title">خدماتنا <span>الرقمية</span></h2>
+            <p class="section-subtitle">نقدم لك مجموعة متكاملة من الحلول المصممة خصيصاً لتناسب تطلعاتك</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <h3>تطوير واجهات الويب</h3>
+                <p>تصميم وبرمجة واجهات مستخدم متجاوبة، سريعة، وبأحدث تقنيات الـ Front-end لتلفت انتباه كل زائر.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <h3>الكتابة الإبداعية</h3>
+                <p>صياغة محتوى فني وأدبي راقي، وقصص ونصوص تعبيرية تلمس قلوب القراء وتعبر عن هويتك بدقة.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <h3>الخدمات الرقمية المصغرة</h3>
+                <p>تحويل وتنسيق المستندات بدقة، حلول رقمية سريعة، وتنظيم البيانات باحترافية عالية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم أعمالنا -->
+    <section class="works-section" id="works">
+        <div class="section-header">
+            <h2 class="section-title">معرض <span>أعمالنا</span></h2>
+            <p class="section-subtitle">نماذج من مشاريعنا الرقمية وإبداعاتنا التي صُممت بعناية فائقة</p>
+        </div>
+
+        <div class="works-grid">
+            <div class="work-card">
+                <div class="work-img-box" style="padding: 0; overflow:hidden">
+                    <img src="imaes/library-cover.jpg"alt="مكتبةالروايات الرقمية" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="work-content">
+                    <h3>مكتبة الروايات الرقمية</h3>
+                    <p>منصة ويب متكاملة ومصممة بعناية لعرض الأعمال والقصص الأدبية بأسلوب فخم وراقي.</p>
+                    <a href="https://s60816328-lab.github.io/my-novels/" target="_blank" class="work-link">استعرض
+                        المشروع <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-img-box">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div class="work-content">
+                    <h3>واجهات إيثير الرقمية</h3>
+                    <p>تصميم واجهات مستخدم تفاعلية (Front-end) سريعة، مذهلة، ومجهزة بأحدث المؤثرات الحركية.</p>
+                    <a href="#contact" class="work-link">اطلب شبيهًا لها <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-img-box">
+                    <i class="fa-solid fa-file-invoice"></i>
+                </div>
+                <div class="work-content">
+                    <h3>خدمات تنسيق المستندات</h3>
+                    <p>حلول رقمية دقيقة لتنسيق وتحويل المستندات والملفات بأعلى معايير الاحترافية والسرعة.</p>
+                    <a href="#contact" class="work-link">اطلب الخدمة <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم نموذج التواصل المتقدم -->
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">ابدأ <span>مشروعك الآن</span></h2>
+            <p class="section-subtitle">املأ النموذج أدناه، وسنكون على تم الاستعداد لتحويل أفكارك إلى حقيقة ملموسة</p>
+        </div>
+
+        <div class="contact-card-form" id="start">
+            <form id="projectForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-user"></i> الاسم الكامل</label>
+                        <input type="text" placeholder="اكتب اسمك الكريم هنا..." required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                        <input type="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-phone"></i> رقم الهاتف / واتساب</label>
+                        <input type="tel" placeholder="010xxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-list-check"></i> نوع الخدمة المطلوبة</label>
+                        <select required>
+                            <option value="" disabled selected>اختر الخدمة المناسبة...</option>
+                            <option value="web">تطوير واجهات الويب (Front-end)</option>
+                            <option value="writing">الكتابة الإبداعية والأدبية</option>
+                            <option value="services">الخدمات الرقمية المصغرة وتنسيق المستندات</option>
+                            <option value="other">استشارة رقمية خاصة</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-coins"></i> الميزانية المتوقعة</label>
+                        <input type="text" placeholder="حدد ميزانيتك المقترحة...">
+                    </div>
+                </div>
+                <div class="form-group full-width" style="margin-top: 20px;">
+                    <label><i class="fa-solid fa-comment-dots"></i> تفاصيل المشروع</label>
+                    <textarea rows="5" placeholder="اكتب لنا تفاصيل وأفكار مشروعك لنبدأ العمل عليها فوراً..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i> إرسال الطلب الاحترافي
+                </button>
+            </form>
+            <div id="successMessage" class="success-message" style="display: none;">
+                <i class="fa-solid fa-circle-check fa-3x"></i>
+                <h3>تم إرسال طلبك بنجاح!</h3>
+                <p>شكراً لثقتك بـ Aether Digital، سنقوم بالتواصل معك في أقرب وقت ممكن.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأزرار العائمة -->
+    <div class="floating-sidebar">
+        <a href="https://wa.me/" target="_blank" class="float-btn whatsapp" title="تواصل واتساب"><i
+                class="fa-brands fa-whatsapp"></i></a>
+        <a href="#hero" class="float-btn" title="العودة لأعلى"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 <span>Aether Digital</span> | تصميم وتنفيذ فخم بلمسات مبدعة.</p>
+    </footer>
+
+    <!-- الجافاسكريبت التفاعلي والحركي -->
+    <script>
+        // إخفاء صفحة التحميل بسلاسة بعد انتهاء التحميل
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            }, 2400);
+        });
+
+        // التحكم في فتح وإغلاق القائمة الجانبية
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('closeBtn');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // تشغيل عدادات الأرقام المتحركة عند التمرير
+        const counters = document.querySelectorAll('.stat-number');
+        let animated = false;
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight;
+            const statsSection = document.querySelector('.stats-container');
+
+            if (statsSection && scrollPos >= statsSection.offsetTop + 100 && !animated) {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = target / 30;
+
+                    const updateCount = () => {
+                        count += speed;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count) + (target === 100 ? '%' : '+');
+                            setTimeout(updateCount, 40);
+                        } else {
+                            counter.innerText = target + (target === 100 ? '%' : '+');
+                        }
+                    };
+                    updateCount();
+                });
+                animated = true;
+            }
+        });
+
+        // التعامل مع إرسال النموذج باحترافية
+        const projectForm = document.getElementById('projectForm');
+        if (projectForm) {
+            projectForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                projectForm.style.display = 'none';
+                document.getElementById('successMessage').style.display = 'flex';
+            });
+        }
+    </script>
+</body>
+
+</html>
