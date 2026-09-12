@@ -37,110 +37,99 @@
 
         /* صفحة التحميل الاحترافية (Splash Screen) */
         #preloader {
-            Position: fixed;
-            Top: 0;
-            Left: 0;
-            Width: 100%;
-            Height: 100vh;
-            Background: var(--bg-deep, #0b0914);
-            Display: flex;
-            Flex-direction: column;
-            Justify-content: center;
-            Align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-deep, #0b0914);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             z-index: 9999;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
         .preloader-box {
-            Text-align: center;
-            Display: flex;
-            Flex-direction: column;
-            Align-items: center;
-            Gap: 20px;
-            Padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
         }
 
         .preloader-title {
-            Font-size: 24px;
-            Font-weight: 900;
-            Background: linear-gradient(135deg, var(--primary-purple, #8b5cf6), var(--accent-pink, #ec4899));
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-purple, #8b5cf6), var(--accent-pink, #ec4899));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            Display: flex;
-            Align-items: center;
-            Gap: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* المعين المتحرك (Diamond Loader) وفي داخله اختصار AD */
         .diamond-loader {
-            Width: 70px;
-            Height: 70px;
-            Background: rgba(139, 92, 246, 0.1);
-            Border: 2px solid var(--primary-purple, #8b5cf6);
-            Transform: rotate(45deg);
-            Display: flex;
-            Justify-content: center;
-            Align-items: center;
-            Margin: 15px 0;
-            Animation: spinDiamond 3s linear infinite;
-            Box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
-            Border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid var(--primary-purple, #8b5cf6);
+            transform: rotate(45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            animation: spinDiamond 3s linear infinite;
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
         }
 
         .diamond-text {
-            Transform: rotate(-45deg);
-            Font-size: 20px;
-            Font-weight: 900;
-            Color: var(--accent-pink, #ec4899);
+            transform: rotate(-45deg);
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--accent-pink, #ec4899);
         }
 
         @keyframes spinDiamond {
-            0% {
-                transform: rotate(45deg);
-            }
-
-            100% {
-                transform: rotate(405deg);
-            }
+            0% { transform: rotate(45deg); }
+            100% { transform: rotate(405deg); }
         }
 
         .preloader-subtitle {
-            Font-size: 14px;
-            Color: var(--text-muted, #9ca3af);
-            Letter-spacing: 0.5px;
-            Margin-top: 5px;
+            font-size: 14px;
+            color: var(--text-muted, #9ca3af);
+            letter-spacing: 0.5px;
+            margin-top: 5px;
         }
 
         .loading-progress-bar {
-            Width: 200px;
-            Height: 3px;
-            Background: rgba(255, 255, 255, 0.1);
-            Border-radius: 10px;
-            Overflow: hidden;
-            Margin-top: 10px;
-            Position: relative;
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+            position: relative;
         }
 
         .loading-progress-fill {
-            Position: absolute;
-            Top: 0;
-            Right: 0;
-            Height: 100%;
-            Width: 0%;
-            Background: var(--accent-green, #22c55e);
-            Border-radius: 10px;
-            Box-shadow: 0 0 10px var(--accent-green, #22c55e);
-            Animation: fillProgress 2.2s ease forwards;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 0%;
+            background: #22c55e;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #22c55e;
+            animation: fillProgress 2.2s ease forwards;
         }
 
         @keyframes fillProgress {
-            0% {
-                width: 0%;
-            }
-
-            100% {
-                width: 100%;
-            }
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
 
         /* شريط التنقل العلوي */
@@ -270,9 +259,6 @@
             margin-bottom: 20px;
             line-height: 1.3;
             max-width: 800px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.3s;
         }
 
         .hero h1 span {
@@ -286,17 +272,11 @@
             color: var(--text-muted);
             max-width: 600px;
             margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.5s;
         }
 
         .hero-btns {
             display: flex;
             gap: 20px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.7s;
         }
 
         .btn-main {
@@ -333,7 +313,7 @@
             transform: translateY(-3px);
         }
 
-        /* عدادات الإحصائيات المتحركة Stats Cards */
+        /* الإحصائيات */
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -384,7 +364,7 @@
             font-weight: 600;
         }
 
-        /* قسم عن الشركة / عني */
+        /* قسم عني */
         .about-section {
             padding: 100px 20px;
             max-width: 1100px;
@@ -482,7 +462,7 @@
             color: var(--primary-purple);
         }
 
-        /* قسم خدماتنا */
+        /* قسم الخدمات */
         .services-section {
             padding: 100px 20px;
             background: rgba(21, 16, 38, 0.3);
@@ -561,7 +541,7 @@
             line-height: 1.7;
         }
 
-        /* قسم أعمالنا */
+        /* قسم الأعمال */
         .works-section {
             padding: 100px 20px;
             max-width: 1100px;
@@ -640,7 +620,7 @@
             transform: translateX(-5px);
         }
 
-        /* تنسيقات نموذج التواصل */
+        /* قسم نموذج التواصل */
         .contact-section {
             padding: 100px 20px;
             background: rgba(21, 16, 38, 0.4);
@@ -668,7 +648,6 @@
             .form-grid {
                 grid-template-columns: 1fr;
             }
-
             .contact-card-form {
                 padding: 25px;
             }
@@ -727,11 +706,11 @@
             border: none;
             padding: 16px;
             border-radius: 14px;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 800;
             cursor: pointer;
             box-shadow: var(--glow-shadow);
-            transition: 0.3s;
+            transition: 0.3s ease;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -758,7 +737,7 @@
 
         .success-message h3 {
             font-size: 24px;
-            font-weight: 900;
+            font-weight: 800;
             color: var(--text-main);
         }
 
@@ -767,90 +746,62 @@
             font-size: 16px;
         }
 
-        /* الأزرار العائمة */
+        /* الأزرار العائمة والفوتر */
         .floating-sidebar {
             position: fixed;
             bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            left: 30px;
             z-index: 999;
         }
 
         .float-btn {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
+            background: #25d366;
+            color: white;
             border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--primary-purple);
-            color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: var(--glow-shadow);
-            transition: 0.3s;
+            font-size: 28px;
             text-decoration: none;
-        }
-
-        .float-btn.whatsapp {
-            background: #25d366;
-            border: none;
-            color: white;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: 0.3s ease;
         }
 
         .float-btn:hover {
             transform: scale(1.1);
         }
 
-        /* الفوتر */
         footer {
             text-align: center;
-            padding: 40px 20px;
-            background: var(--bg-deep);
-            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            padding: 30px 20px;
             color: var(--text-muted);
             font-size: 14px;
-        }
-
-        footer span {
-            color: var(--accent-pink);
-            font-weight: 700;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            background: var(--bg-deep);
         }
     </style>
 </head>
 
 <body>
-    <!-- صفحة التحميل الاحترافية (Splash Screen) -->
+
+    <!-- صفحة التحميل الاحترافية -->
     <div id="preloader">
         <div class="preloader-box">
             <div class="preloader-title">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Aether Digital <i class="fa-solid fa-star"
-                    style="font-size: 12px; color: var(--accent-pink);"></i>
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Aether Digital
             </div>
-
-            <!-- معين يدور وفيه اختصار AD -->
             <div class="diamond-loader">
                 <div class="diamond-text">AD</div>
             </div>
-
             <div class="preloader-subtitle">نحول الأفكار إلى واقع رقمي مبهر...</div>
-
-            <!-- خط التحميل الأخضر الرفيع -->
             <div class="loading-progress-bar">
                 <div class="loading-progress-fill"></div>
             </div>
         </div>
     </div>
+
     <!-- شريط التنقل العلوي -->
     <header>
         <div class="logo">
@@ -861,276 +812,199 @@
         </div>
     </header>
 
-    <!-- القائمة الجانبية المنسدلة -->
+    <!-- القائمة الجانبية -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-close" id="closeBtn">
-            <i class="fa-solid fa-xmark fa-lg"></i>
+            <i class="fa-solid fa-xmark"></i>
         </div>
         <ul class="sidebar-links">
             <li><a href="#hero"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
-            <li><a href="#about"><i class="fa-solid fa-heart"></i> عن الشركة / عني</a></li>
-            <li><a href="#services"><i class="fa-solid fa-laptop-code"></i> خدماتنا</a></li>
-            <li><a href="#works"><i class="fa-solid fa-briefcase"></i> أعمالنا</a></li>
-            <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i> تواصل معنا</a></li>
-            <li><a href="#start"
-                    style="background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink)); color: white;"><i
-                        class="fa-solid fa-rocket"></i> ابدأ مشروعك الآن</a></li>
+            <li><a href="#about"><i class="fa-solid fa-user-tie"></i> عني</a></li>
+            <li><a href="#services"><i class="fa-solid fa-layer-group"></i> خدماتنا</a></li>
+            <li><a href="#works"><i class="fa-solid fa-briefcase"></i> أعمالي</a></li>
+            <li><a href="#start"><i class="fa-solid fa-paper-plane"></i> ابدأ مشروعك</a></li>
         </ul>
     </div>
 
     <!-- القسم التعريفي -->
     <section class="hero" id="hero">
-        <h1>نحول أفكارك إلى <span>واجهات رقمية</span> جذابة وأدوات تفاعلية</h1>
-        <p>نقدم لك تصاميم عصرية، حلول برمجية فخمة، وإبداع بلا حدود ينبض بالدقة والاحترافية العالية.</p>
+        <h1>نحول أفكارك إلى <span>واقع رقمي</span> مبهر واحترافي</h1>
+        <p>نقدم لك حلول ويب إبداعية، كتابة أدبية متميزة، وخدمات رقمية مصممة خصيصاً لتناسب طموحاتك.</p>
         <div class="hero-btns">
-            <a href="#works" class="btn-main btn-primary">شاهد أعمالنا</a>
-            <a href="#contact" class="btn-main btn-outline">تواصل معنا</a>
+            <a href="#start" class="btn-main btn-primary">ابدأ مشروعك الآن</a>
+            <a href="#services" class="btn-main btn-outline">استكشف خدماتنا</a>
         </div>
     </section>
 
-    <!-- عدادات الإحصائيات المتحركة -->
+    <!-- الإحصائيات -->
     <div class="stats-container">
         <div class="stat-card">
-            <div class="stat-number" data-target="2">0</div>
-            <div class="stat-label">سنوات الخبرة</div>
+            <div class="stat-number" data-target="100">0%</div>
+            <div class="stat-label">نسبة الإبداع والتميز</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number" data-target="15">0</div>
+            <div class="stat-number" data-target="50">0+</div>
             <div class="stat-label">مشروع ناجح</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number" data-target="100">0</div>
-            <div class="stat-label">% رضا العملاء</div>
+            <div class="stat-number" data-target="24">0/7</div>
+            <div class="stat-label">دعم فني متواصل</div>
         </div>
     </div>
 
-    <!-- قسم عن الشركة / عني -->
+    <!-- قسم عني -->
     <section class="about-section" id="about">
         <div class="about-container">
             <div class="about-image-box">
                 <div class="about-glow"></div>
                 <div class="about-card-badge">
-                    <i class="fa-solid fa-award"></i>
-                    <span>إبداع بلا حدود</span>
+                    <i class="fa-solid fa-code"></i> مطورة ومصممة واجهات ويب
                 </div>
             </div>
-            <div class="about-content">
-                <h2 class="section-title">عن <span>Aether Digital</span></h2>
-                <p class="about-text">
-                    نحن نؤمن بأن الأفكار البسيطة تتحول بأيدي أمينة ودقيقة إلى واجهات رقمية نابضة بالحياة. قصتنا بدأت
-                    بشغف حقيقي وتطوير مستمر للذات في عالم البرمجة وتصميم الواجهات، لنصنع لك اليوم تجربة مستخدم فريدة
-                    تجمع بين جمال الألوان وقوة الأداء.
-                </p>
+            <div>
+                <h2 class="section-title">شغف بالتقنية <span>والإبداع الرقمي</span></h2>
+                <p class="about-text">أنا هنا لمساعدتك في بناء هويتك الرقمية بكل احترافية، سواء كنت بحاجة لتطوير موقع ويب عصري، صياغة محتوى إبداعي مميز، أو إدارة خدماتك الرقمية بدقة عالية.</p>
                 <div class="about-features">
-                    <div class="feature-item">
-                        <i class="fa-solid fa-check-circle"></i>
-                        <span>شغف وإتقان في كل تفصيلة</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fa-solid fa-check-circle"></i>
-                        <span>جودة ومتابعة دقيقة لمشاريع الويب</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fa-solid fa-check-circle"></i>
-                        <span>دعم مستمر واحترافية عالية</span>
-                    </div>
+                    <div class="feature-item"><i class="fa-solid fa-circle-check"></i> تصميم متجاوب مع جميع الأجهزة</div>
+                    <div class="feature-item"><i class="fa-solid fa-circle-check"></i> جودة عالية وسرعة فائقة في التنفيذ</div>
+                    <div class="feature-item"><i class="fa-solid fa-circle-check"></i> التزام تام بالمواعيد ورضا العملاء</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- قسم خدماتنا -->
+    <!-- قسم الخدمات -->
     <section class="services-section" id="services">
         <div class="section-header">
-            <h2 class="section-title">خدماتنا <span>الرقمية</span></h2>
-            <p class="section-subtitle">نقدم لك مجموعة متكاملة من الحلول المصممة خصيصاً لتناسب تطلعاتك</p>
+            <h2 class="section-title">ماذا نقدم <span>لك؟</span></h2>
+            <p class="section-subtitle">خدمات رقمية متكاملة مصممة خصيصاً للارتقاء بمشروعك</p>
         </div>
-
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-code"></i>
-                </div>
-                <h3>تطوير واجهات الويب</h3>
-                <p>تصميم وبرمجة واجهات مستخدم متجاوبة، سريعة، وبأحدث تقنيات الـ Front-end لتلفت انتباه كل زائر.</p>
+                <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h3>تطوير واجهات الويب (Front-end)</h3>
+                <p>تصميم وبرمجة واجهات مواقع عصرية، سريعة، ومتجاوبة كلياً مع الهواتف الذكية وأجهزة الكمبيوتر.</p>
             </div>
-
             <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-pen-nib"></i>
-                </div>
-                <h3>الكتابة الإبداعية</h3>
-                <p>صياغة محتوى فني وأدبي راقي، وقصص ونصوص تعبيرية تلمس قلوب القراء وتعبر عن هويتك بدقة.</p>
+                <div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                <h3>الكتابة الإبداعية والأدبية</h3>
+                <p>صياغة نصوص جذابة، مقالات، ومحتوى إبداعي يعبر عن هويتك ويجذب جمهورك المستهدف بكل سلاسة.</p>
             </div>
-
             <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-file-lines"></i>
-                </div>
-                <h3>الخدمات الرقمية المصغرة</h3>
-                <p>تحويل وتنسيق المستندات بدقة، حلول رقمية سريعة، وتنظيم البيانات باحترافية عالية.</p>
+                <div class="service-icon"><i class="fa-solid fa-file-lines"></i></div>
+                <h3>الخدمات الرقمية وتنسيق المستندات</h3>
+                <p>تنسيق الأبحاث والمستندات باحترافية عالية، وتقديم حلول رقمية مصغرة تسهل أعمالك اليومية.</p>
             </div>
         </div>
     </section>
 
-    <!-- قسم أعمالنا -->
+    <!-- قسم الأعمال -->
     <section class="works-section" id="works">
         <div class="section-header">
-            <h2 class="section-title">معرض <span>أعمالنا</span></h2>
-            <p class="section-subtitle">نماذج من مشاريعنا الرقمية وإبداعاتنا التي صُممت بعناية فائقة</p>
+            <h2 class="section-title">أحدث <span>أعمالنا</span></h2>
+            <p class="section-subtitle">نماذج من مشاريعنا الرقمية التي نفتخر بها</p>
         </div>
-
         <div class="works-grid">
             <div class="work-card">
-                <div class="work-img-box" style="padding: 0; overflow:hidden">
-                    <img src="library-cover.png"alt="مكتبةالروايات الرقمية" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+                <div class="work-img-box"><i class="fa-solid fa-book-open"></i></div>
                 <div class="work-content">
-                    <h3>مكتبة الروايات الرقمية</h3>
-                    <p>منصة ويب متكاملة ومصممة بعناية لعرض الأعمال والقصص الأدبية بأسلوب فخم وراقي.</p>
-                    <a href="https://s60816328-lab.github.io/my-novels/" target="_blank" class="work-link">استعرض
-                        المشروع <i class="fa-solid fa-arrow-left"></i></a>
+                    <h3>منصة الروايات والقصص</h3>
+                    <p>موقع تفاعلي لعرض وقراءة الروايات بتصميم ليلي فاخر وتجربة مستخدم مريحة وجذابة.</p>
+                    <a href="#" class="work-link">استعرض المشروع <i class="fa-solid fa-arrow-left"></i></a>
                 </div>
             </div>
-
             <div class="work-card">
-                <div class="work-img-box">
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div>
+                <div class="work-img-box"><i class="fa-solid fa-briefcase"></i></div>
                 <div class="work-content">
-                    <h3>واجهات إيثير الرقمية</h3>
-                    <p>تصميم واجهات مستخدم تفاعلية (Front-end) سريعة، مذهلة، ومجهزة بأحدث المؤثرات الحركية.</p>
-                    <a href="#contact" class="work-link">اطلب شبيهًا لها <i class="fa-solid fa-arrow-left"></i></a>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="work-img-box">
-                    <i class="fa-solid fa-file-invoice"></i>
-                </div>
-                <div class="work-content">
-                    <h3>خدمات تنسيق المستندات</h3>
-                    <p>حلول رقمية دقيقة لتنسيق وتحويل المستندات والملفات بأعلى معايير الاحترافية والسرعة.</p>
-                    <a href="#contact" class="work-link">اطلب الخدمة <i class="fa-solid fa-arrow-left"></i></a>
+                    <h3>معرض الأعمال الشخصي (Portfolio)</h3>
+                    <p>صفحة تعريفية متكاملة تبرز المهارات والخدمات بأسلوب عصري ومؤثر.</p>
+                    <a href="#" class="work-link">استعرض المشروع <i class="fa-solid fa-arrow-left"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- قسم نموذج التواصل المتقدم -->
-    <section class="contact-section" id="contact">
-        <div class="section-header">
-            <h2 class="section-title">ابدأ <span>مشروعك الآن</span></h2>
-            <p class="section-subtitle">املأ النموذج أدناه، وسنكون على تم الاستعداد لتحويل أفكارك إلى حقيقة ملموسة</p>
-        </div>
+    <!-- قسم نموذج التواصل -->
+    <section class="contact-section" id="start">
+        <div class="contact-card-form">
+            <div class="section-header" style="margin-bottom: 40px;">
+                <h2 class="section-title">ابدأ مشروعك <span>الآن</span></h2>
+                <p class="section-subtitle">املأ النموذج أدناه وسنتواصل معك فوراً عبر الواتساب</p>
+            </div>
+            <form id="projectForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-user"></i> الاسم الكامل</label>
+                        <input type="text" id="clientName" placeholder="اكتب اسمك الكريم هنا..." required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                        <input type="email" id="clientEmail" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-phone"></i> رقم الهاتف / واتساب</label>
+                        <input type="tel" id="clientPhone" placeholder="010xxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-list-check"></i> نوع الخدمة المطلوبة</label>
+                        <select id="clientService" required>
+                            <option value="" disabled selected>اختر الخدمة المناسبة...</option>
+                            <option value="تطوير واجهات الويب (Front-end)">تطوير واجهات الويب (Front-end)</option>
+                            <option value="الكتابة الإبداعية والأدبية">الكتابة الإبداعية والأدبية</option>
+                            <option value="الخدمات الرقمية المصغرة وتنسيق المستندات">الخدمات الرقمية المصغرة وتنسيق المستندات</option>
+                            <option value="استشارة رقمية خاصة">استشارة رقمية خاصة</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-coins"></i> الميزانية المتوقعة</label>
+                        <input type="text" id="clientBudget" placeholder="حدد ميزانيتك المقترحة...">
+                    </div>
+                </div>
+                <div class="form-group full-width" style="margin-top: 20px;">
+                    <label><i class="fa-solid fa-comment-dots"></i> تفاصيل المشروع</label>
+                    <textarea id="clientDetails" rows="5" placeholder="اكتب لنا تفاصيل وأفكار مشروعك لنبدأ العمل عليها فوراً..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i> إرسال الطلب الاحترافي
+                </button>
+            </form>
 
-        <div class="contact-card-form" id="start">
-<form id="projectForm">
-    <div class="form-grid">
-        <div class="form-group">
-            <label><i class="fa-solid fa-user"></i> الاسم الكامل</label>
-            <input type="text" id="clientName" placeholder="اكتب اسمك الكريم هنا..." required>
-        </div>
-        <div class="form-group">
-            <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
-            <input type="email" id="clientEmail" placeholder="name@example.com" required>
-        </div>
-        <div class="form-group">
-            <label><i class="fa-solid fa-phone"></i> رقم الهاتف / واتساب</label>
-            <input type="tel" id="clientPhone" placeholder="010xxxxxxxx" required>
-        </div>
-        <div class="form-group">
-            <label><i class="fa-solid fa-list-check"></i> نوع الخدمة المطلوبة</label>
-            <select id="clientService" required>
-                <option value="" disabled selected>اختر الخدمة المناسبة...</option>
-                <option value="تطوير واجهات الويب (Front-end)">تطوير واجهات الويب (Front-end)</option>
-                <option value="الكتابة الإبداعية والأدبية">الكتابة الإبداعية والأدبية</option>
-                <option value="الخدمات الرقمية المصغرة وتنسيق المستندات">الخدمات الرقمية المصغرة وتنسيق المستندات</option>
-                <option value="استشارة رقمية خاصة">استشارة رقمية خاصة</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label><i class="fa-solid fa-coins"></i> الميزانية المتوقعة</label>
-            <input type="text" id="clientBudget" placeholder="حدد ميزانيتك المقترحة...">
-        </div>
-    </div>
-    <div class="form-group full-width" style="margin-top: 20px;">
-        <label><i class="fa-solid fa-comment-dots"></i> تفاصيل المشروع</label>
-        <textarea id="clientDetails" rows="5" placeholder="اكتب لنا تفاصيل وأفكار مشروعك لنبدأ العمل عليها فوراً..." required></textarea>
-    </div>
-    <button type="submit" class="submit-btn">
-        <i class="fa-solid fa-paper-plane"></i> إرسال الطلب الاحترافي
-    </button>
-</form>
-
-<div id="successMessage" class="success-message" style="display: none;">
-    <i class="fa-solid fa-circle-check fa-3x"></i>
-    <h3>تم إرسال طلبك بنجاح!</h3>
-    <p>شكراً لثقتك بـ Aether Digital، سنقوم بالتواصل معك في أقرب وقت ممكن.</p>
-</div>
-
-<script>
-const projectForm = document.getElementById('projectForm');
-if (projectForm) {
-    projectForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('clientName').value;
-        const email = document.getElementById('clientEmail').value;
-        const phone = document.getElementById('clientPhone').value;
-        const service = document.getElementById('clientService').value;
-        const budget = document.getElementById('clientBudget').value || "غير محددة";
-        const details = document.getElementById('clientDetails').value;
-        
-        const myWhatsAppNumber = '201044216605'; 
-        
-        const message = `طلب جديد من موقع Aether Digital:%0A` +
-                        `- الاسم: ${name}%0A` +
-                        `- البريد: ${email}%0A` +
-                        `- الهاتف: ${phone}%0A` +
-                        `- الخدمة: ${service}%0A` +
-                        `- الميزانية: ${budget}%0A` +
-                        `- التفاصيل: ${details}`;
-        
-        window.open(`https://wa.me/${myWhatsAppNumber}?text=${message}`, '_blank');
-        
-        projectForm.style.display = 'none';
-        const successMsg = document.getElementById('successMessage');
-        if (successMsg) {
-            successMsg.style.display = 'flex';
-        }
-    });
-}
-</script>
+            <div id="successMessage" class="success-message" style="display: none;">
+                <i class="fa-solid fa-circle-check fa-3x"></i>
+                <h3>تم إرسال طلبك بنجاح!</h3>
+                <p>شكراً لثقتك بـ Aether Digital، سنقوم بالتواصل معك في أقرب وقت ممكن.</p>
+            </div>
         </div>
     </section>
 
-    <!-- الأزرار العائمة -->
+    <!-- زر الواتساب العائم -->
     <div class="floating-sidebar">
-        <a href="https://wa.me/" target="_blank" class="float-btn whatsapp" title="تواصل واتساب"><i
-                class="fa-brands fa-whatsapp"></i></a>
-        <a href="#hero" class="float-btn" title="العودة لأعلى"><i class="fa-solid fa-arrow-up"></i></a>
+        <a href="https://wa.me/201044216605" target="_blank" class="float-btn" title="تواصل معنا عبر واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
     </div>
 
-    <!-- الفوتر -->
     <footer>
-        <p>جميع الحقوق محفوظة © 2026 <span>Aether Digital</span> | تصميم وتنفيذ فخم بلمسات مبدعة.</p>
+        <p>© 2026 جميع الحقوق محفوظة لـ <span>Aether Digital</span></p>
     </footer>
 
-    <!-- الجافاسكريبت التفاعلي والحركي -->
-        <script>
-        // إخفاء شاشة التحميل بضمان تام بعد تحميل الصفحة
+    <!-- سكربت التشغيل المتكامل -->
+    <script>
+        // إخفاء صفحة التحميل بسلاسة بعد فتح الصفحة
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             if (preloader) {
                 setTimeout(() => {
                     preloader.style.opacity = '0';
                     preloader.style.visibility = 'hidden';
-                }, 1500); // تقليل وقت الانتظار لضمان الفتح السريع
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 500);
+                }, 1200);
             }
         });
 
-        // التحكم في فتح وإغلاق القائمة الجانبية
+        // القائمة الجانبية
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const closeBtn = document.getElementById('closeBtn');
@@ -1153,7 +1027,7 @@ if (projectForm) {
             }
         });
 
-        // عدادات الأرقام المتحركة
+        // عدادات الأرقام
         const counters = document.querySelectorAll('.stat-number');
         let animated = false;
 
@@ -1182,7 +1056,7 @@ if (projectForm) {
             }
         });
 
-        // نموذج الواتساب الاحترافي المحدث
+        // نموذج الواتساب
         const projectForm = document.getElementById('projectForm');
         if (projectForm) {
             projectForm.addEventListener('submit', function (e) {
