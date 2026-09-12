@@ -935,7 +935,7 @@
                 <h2 class="section-title">ابدأ مشروعك <span>الآن</span></h2>
                 <p class="section-subtitle">املأ النموذج أدناه وسنتواصل معك فوراً عبر الواتساب</p>
             </div>
-            <form id="projectForm">
+            <form id="projectForm" onsubmit="sendToWhatsApp(event)">
                 <div class="form-grid">
                     <div class="form-group">
                         <label><i class="fa-solid fa-user"></i> الاسم الكامل</label>
@@ -1061,30 +1061,21 @@
         });
 
         // نموذج الواتساب
-        const projectForm = document.getElementById('projectForm');
-if (projectForm) {
-    projectForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('clientName').value;
-        const email = document.getElementById('clientEmail').value;
-        const phone = document.getElementById('clientPhone').value;
-        const service = document.getElementById('clientService').value;
-        const budget = document.getElementById('clientBudget') ? document.getElementById('clientBudget').value : "غير محددة";
-        const details = document.getElementById('clientDetails').value;
-        
-        const myWhatsAppNumber = '201044216605'; 
-        
-        const message = `طلب جديد من موقع Aether Digital:%0A- الاسم: ${name}%0A- البريد: ${email}%0A- الهاتف: ${phone}%0A- الخدمة: ${service}%0A- الميزانية: ${budget}%0A- التفاصيل: ${details}`;
-        
-        window.open(`https://wa.me/${myWhatsAppNumber}?text=${message}`, '_blank');
-        
-        projectForm.reset();
-        const successMsg = document.getElementById('successMessage');
-        if (successMsg) {
-            successMsg.style.display = 'flex';
-        }
-    });
+        function sendToWhatsApp(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('clientName').value;
+    const email = document.getElementById('clientEmail').value;
+    const phone = document.getElementById('clientPhone').value;
+    const service = document.getElementById('clientService').value;
+    const budget = document.getElementById('clientBudget').value || "غير محددة";
+    const details = document.getElementById('clientDetails').value;
+    
+    const myWhatsAppNumber = '201044216605';
+    
+    const message = `طلب جديد من موقع Aether Digital:%0A- الاسم: ${name}%0A- البريد: ${email}%0A- الهاتف: ${phone}%0A- الخدمة: ${service}%0A- الميزانية: ${budget}%0A- التفاصيل: ${details}`;
+    
+    window.location.href = `https://wa.me/${myWhatsAppNumber}?text=${message}`;
 }
     </script>
 </body>
