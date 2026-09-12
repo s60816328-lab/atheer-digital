@@ -1118,14 +1118,16 @@ if (projectForm) {
     </footer>
 
     <!-- الجافاسكريبت التفاعلي والحركي -->
-    <script>
-        // إخفاء صفحة التحميل بسلاسة بعد انتهاء التحميل
+        <script>
+        // إخفاء شاشة التحميل بضمان تام بعد تحميل الصفحة
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                preloader.style.visibility = 'hidden';
-            }, 2400);
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    preloader.style.visibility = 'hidden';
+                }, 1500); // تقليل وقت الانتظار لضمان الفتح السريع
+            }
         });
 
         // التحكم في فتح وإغلاق القائمة الجانبية
@@ -1133,22 +1135,25 @@ if (projectForm) {
         const sidebar = document.getElementById('sidebar');
         const closeBtn = document.getElementById('closeBtn');
 
-        menuBtn.addEventListener('click', () => {
-            sidebar.classList.add('active');
-        });
+        if (menuBtn && sidebar) {
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.add('active');
+            });
+        }
 
-        closeBtn.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-        });
+        if (closeBtn && sidebar) {
+            closeBtn.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+            });
+        }
 
-        // إغلاق القائمة عند النقر خارجها
         document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+            if (sidebar && menuBtn && !sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
                 sidebar.classList.remove('active');
             }
         });
 
-        // تشغيل عدادات الأرقام المتحركة عند التمرير
+        // عدادات الأرقام المتحركة
         const counters = document.querySelectorAll('.stat-number');
         let animated = false;
 
@@ -1177,16 +1182,38 @@ if (projectForm) {
             }
         });
 
-        // التعامل مع إرسال النموذج باحترافية
+        // نموذج الواتساب الاحترافي المحدث
         const projectForm = document.getElementById('projectForm');
         if (projectForm) {
             projectForm.addEventListener('submit', function (e) {
                 e.preventDefault();
+                
+                const name = document.getElementById('clientName').value;
+                const email = document.getElementById('clientEmail').value;
+                const phone = document.getElementById('clientPhone').value;
+                const service = document.getElementById('clientService').value;
+                const budget = document.getElementById('clientBudget').value || "غير محددة";
+                const details = document.getElementById('clientDetails').value;
+                
+                const myWhatsAppNumber = '201044216605'; 
+                
+                const message = `طلب جديد من موقع Aether Digital:%0A` +
+                                `- الاسم: ${name}%0A` +
+                                `- البريد: ${email}%0A` +
+                                `- الهاتف: ${phone}%0A` +
+                                `- الخدمة: ${service}%0A` +
+                                `- الميزانية: ${budget}%0A` +
+                                `- التفاصيل: ${details}`;
+                
+                window.open(`https://wa.me/${myWhatsAppNumber}?text=${message}`, '_blank');
+                
                 projectForm.style.display = 'none';
-                document.getElementById('successMessage').style.display = 'flex';
+                const successMsg = document.getElementById('successMessage');
+                if (successMsg) {
+                    successMsg.style.display = 'flex';
+                }
             });
         }
     </script>
 </body>
-
 </html>
