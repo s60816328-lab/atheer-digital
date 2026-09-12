@@ -1025,49 +1025,83 @@
         </div>
 
         <div class="contact-card-form" id="start">
-            <form id="projectForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-user"></i> الاسم الكامل</label>
-                        <input type="text" placeholder="اكتب اسمك الكريم هنا..." required>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
-                        <input type="email" placeholder="name@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-phone"></i> رقم الهاتف / واتساب</label>
-                        <input type="tel" placeholder="010xxxxxxxx" required>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-list-check"></i> نوع الخدمة المطلوبة</label>
-                        <select required>
-                            <option value="" disabled selected>اختر الخدمة المناسبة...</option>
-                            <option value="web">تطوير واجهات الويب (Front-end)</option>
-                            <option value="writing">الكتابة الإبداعية والأدبية</option>
-                            <option value="services">الخدمات الرقمية المصغرة وتنسيق المستندات</option>
-                            <option value="other">استشارة رقمية خاصة</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-coins"></i> الميزانية المتوقعة</label>
-                        <input type="text" placeholder="حدد ميزانيتك المقترحة...">
-                    </div>
-                </div>
-                <div class="form-group full-width" style="margin-top: 20px;">
-                    <label><i class="fa-solid fa-comment-dots"></i> تفاصيل المشروع</label>
-                    <textarea rows="5" placeholder="اكتب لنا تفاصيل وأفكار مشروعك لنبدأ العمل عليها فوراً..."
-                        required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <i class="fa-solid fa-paper-plane"></i> إرسال الطلب الاحترافي
-                </button>
-            </form>
-            <div id="successMessage" class="success-message" style="display: none;">
-                <i class="fa-solid fa-circle-check fa-3x"></i>
-                <h3>تم إرسال طلبك بنجاح!</h3>
-                <p>شكراً لثقتك بـ Aether Digital، سنقوم بالتواصل معك في أقرب وقت ممكن.</p>
-            </div>
+<form id="projectForm">
+    <div class="form-grid">
+        <div class="form-group">
+            <label><i class="fa-solid fa-user"></i> الاسم الكامل</label>
+            <input type="text" id="clientName" placeholder="اكتب اسمك الكريم هنا..." required>
+        </div>
+        <div class="form-group">
+            <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+            <input type="email" id="clientEmail" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+            <label><i class="fa-solid fa-phone"></i> رقم الهاتف / واتساب</label>
+            <input type="tel" id="clientPhone" placeholder="010xxxxxxxx" required>
+        </div>
+        <div class="form-group">
+            <label><i class="fa-solid fa-list-check"></i> نوع الخدمة المطلوبة</label>
+            <select id="clientService" required>
+                <option value="" disabled selected>اختر الخدمة المناسبة...</option>
+                <option value="تطوير واجهات الويب (Front-end)">تطوير واجهات الويب (Front-end)</option>
+                <option value="الكتابة الإبداعية والأدبية">الكتابة الإبداعية والأدبية</option>
+                <option value="الخدمات الرقمية المصغرة وتنسيق المستندات">الخدمات الرقمية المصغرة وتنسيق المستندات</option>
+                <option value="استشارة رقمية خاصة">استشارة رقمية خاصة</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label><i class="fa-solid fa-coins"></i> الميزانية المتوقعة</label>
+            <input type="text" id="clientBudget" placeholder="حدد ميزانيتك المقترحة...">
+        </div>
+    </div>
+    <div class="form-group full-width" style="margin-top: 20px;">
+        <label><i class="fa-solid fa-comment-dots"></i> تفاصيل المشروع</label>
+        <textarea id="clientDetails" rows="5" placeholder="اكتب لنا تفاصيل وأفكار مشروعك لنبدأ العمل عليها فوراً..." required></textarea>
+    </div>
+    <button type="submit" class="submit-btn">
+        <i class="fa-solid fa-paper-plane"></i> إرسال الطلب الاحترافي
+    </button>
+</form>
+
+<div id="successMessage" class="success-message" style="display: none;">
+    <i class="fa-solid fa-circle-check fa-3x"></i>
+    <h3>تم إرسال طلبك بنجاح!</h3>
+    <p>شكراً لثقتك بـ Aether Digital، سنقوم بالتواصل معك في أقرب وقت ممكن.</p>
+</div>
+
+<script>
+const projectForm = document.getElementById('projectForm');
+if (projectForm) {
+    projectForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('clientName').value;
+        const email = document.getElementById('clientEmail').value;
+        const phone = document.getElementById('clientPhone').value;
+        const service = document.getElementById('clientService').value;
+        const budget = document.getElementById('clientBudget').value || "غير محددة";
+        const details = document.getElementById('clientDetails').value;
+        
+        const myWhatsAppNumber = '201044216605'; 
+        
+        const message = `طلب جديد من موقع Aether Digital:%0A` +
+                        `- الاسم: ${name}%0A` +
+                        `- البريد: ${email}%0A` +
+                        `- الهاتف: ${phone}%0A` +
+                        `- الخدمة: ${service}%0A` +
+                        `- الميزانية: ${budget}%0A` +
+                        `- التفاصيل: ${details}`;
+        
+        window.open(`https://wa.me/${myWhatsAppNumber}?text=${message}`, '_blank');
+        
+        projectForm.style.display = 'none';
+        const successMsg = document.getElementById('successMessage');
+        if (successMsg) {
+            successMsg.style.display = 'flex';
+        }
+    });
+}
+</script>
         </div>
     </section>
 
